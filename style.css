@@ -3,7 +3,11 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --first-color: #f28a0b;
+    --second-color: #D2C7BE;
 
+}
 body {
     display: flex;
     justify-content: center;
@@ -12,4 +16,35 @@ body {
     min-height: 100vh;
     font-family: "Montserrat", sans-serif;
     background-color: #333;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+    width: 800px;
+    background-image: radial-gradient(circle, rgb(75, 76, 82) 0%, rgb(25,25,25) 93%);
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px black;
+    color: #cbcbcb;
+
+}
+
+.info {
+    position: absolute;
+    top: 6px;
+    right: 14px;
+    padding: 20px;
+    font-size: 24px;
+    color: var(--second-color);
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.info :hover {
+    color: var(--first-color);
+
 }
