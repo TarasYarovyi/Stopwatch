@@ -4,8 +4,8 @@
     padding: 0;
 }
 :root{
-    --first-color: #f28a0b;
-    --second-color: #D2C7BE;
+    --first-color: #D2C7BE;
+    --second-color: #f28a0b;
 
 }
 body {
@@ -46,5 +46,47 @@ body {
 
 .info :hover {
     color: var(--first-color);
+}
 
+h1 {
+    margin-bottom: 20px;
+    font-size: 60px;
+    font-weight:lighter;
+
+}
+.stopwatch {
+    font-size: 72px;
+    color: var(--second-color);
+
+}
+
+.time {
+    /* visibility: hidden; */
+
+    font-size: 22px;
+    color: var(--second-color);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    width: 20%;
+    color: #fff;
+    font-size: 22px;
+    background-color: transparent;
+    border: 1px solid var(--second-color);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+button :hover, button :focus {
+    background-color: var(--second-color);
 }
