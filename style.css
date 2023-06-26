@@ -52,12 +52,13 @@ h1 {
     margin-bottom: 20px;
     font-size: 60px;
     font-weight:lighter;
-
 }
+
 .stopwatch {
+    width: inherit;
+    padding: 0% 35%;
     font-size: 72px;
     color: var(--second-color);
-
 }
 
 .time {
