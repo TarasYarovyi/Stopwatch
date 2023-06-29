@@ -71,7 +71,6 @@ h1 {
 .buttons {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
     margin: 30px;
 }
 
@@ -87,13 +86,8 @@ button {
     cursor: pointer;
     transition: background-color .3s;
 }
-
-.archive{
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-    
+.fa-pause{
+    width: 16.49px;
 }
 
 
