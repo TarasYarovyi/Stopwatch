@@ -1,37 +1,39 @@
 "use strict";
 
 const stopwatch = document.querySelector(".stopwatch");
-const start = document.querySelector(".start");
-const pauseBtn = document.querySelector(".pause");
+const startBtn = document.querySelector(".start");
+const stopBtn = document.querySelector(".stop");
+
 let status = "switchedOff";
 let startTime;
 let currentTime;
 let pausedTime;
-let diff;
-let min = 0;
-let sec = 0;
-let ms = 0;
+let demonstratedTime;
 
-start.addEventListener("click", on);
-pauseBtn.addEventListener("click", pause);
+startBtn.addEventListener("click", switchStopwatch);
+stopBtn.addEventListener("click", stop);
 
-function on() {
+function switchStopwatch() {
   if (status === "switchedOn") {
-    return;
+    status = "paused";
+    replaceClass(startBtn.firstChild, "fa-pause", "fa-play");
   } else if (status === "switchedOff") {
     status = "switchedOn";
+    replaceClass(startBtn.firstChild, "fa-play", "fa-pause");
     startTime = new Date();
     count();
   } else if (status === "paused") {
     status = "switchedOn";
+    replaceClass(startBtn.firstChild, "fa-play", "fa-pause");
     startTime = new Date();
     startTime.setTime(startTime.getTime() - pausedTime.getTime());
     count();
   }
 }
 
-function pause() {
-  status = "paused";
+function stop() {
+  status = "switchedOff";
+  stopwatch.textContent = "00:00:00";
 }
 
 function count() {
@@ -39,16 +41,22 @@ function count() {
     if (status === "switchedOn") {
       currentTime = new Date();
 
-      diff = new Date(currentTime - startTime);
-      min = diff.getMinutes().toString().padStart(2, 0);
-      sec = diff.getSeconds().toString().padStart(2, 0);
-      ms = Math.trunc(diff.getMilliseconds() / 10)
+      demonstratedTime = new Date(currentTime - startTime);
+      const min = demonstratedTime.getMinutes().toString().padStart(2, 0);
+      const sec = demonstratedTime.getSeconds().toString().padStart(2, 0);
+      const ms = Math.trunc(demonstratedTime.getMilliseconds() / 10)
         .toString()
         .padStart(2, 0);
       stopwatch.textContent = `${min}:${sec}:${ms}`;
     } else if (status === "paused") {
-      pausedTime = diff;
+      pausedTime = demonstratedTime;
       return;
     }
   });
+}
+
+function replaceClass(element, oldClass, newClass) {
+  element.classList.remove(oldClass);
+  element.classList.add(newClass);
+  console.log(element);
 }
