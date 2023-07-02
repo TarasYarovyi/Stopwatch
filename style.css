@@ -86,7 +86,10 @@ button {
     cursor: pointer;
     transition: background-color .3s;
 }
-.fa-pause{
+.fa-pause  {
+    width: 16.49px;
+}
+.fa-arrows-spin{
     width: 16.49px;
 }
 
