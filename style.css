@@ -62,7 +62,7 @@ h1 {
 }
 
 .time {
-    /* visibility: hidden; */
+    visibility: visible;
 
     font-size: 22px;
     color: var(--second-color);
