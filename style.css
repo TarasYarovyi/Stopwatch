@@ -1,4 +1,5 @@
 *{
+    
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -25,6 +26,7 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 50px;
+    margin: 350px;
     width: 800px;
     background-image: radial-gradient(circle, rgb(75, 76, 82) 0%, rgb(25,25,25) 93%);
     border-radius: 8px;
