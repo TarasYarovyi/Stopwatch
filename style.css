@@ -110,6 +110,10 @@ button:hover, button:focus {
     font-weight: bold;
 }
 
+.hiden{
+    display: none;
+}
+
 .modal-shadow{
     display: none;
     position: absolute;
