@@ -1,59 +1,57 @@
 "use strict";
 
 const stopwatch = document.querySelector(".stopwatch");
-const startBtn = document.querySelector(".start");
-const stopBtn = document.querySelector(".stop");
-const pauseBtn = document.querySelector(".pause");
+const startPauseBtn = document.querySelector(".start");
+const splitStopBtn = document.querySelector(".stop");
+const resetTimeListBtn = document.querySelector(".reset");
+const showTimeListBtn = document.querySelector(".archive");
 const timeList = document.querySelector(".time-list");
 
 let status = "switchedOff";
 let startTime;
-let startLap;
+let startLapTime;
 let currentTime;
 let pausedTime;
 let demonstratedTime;
-let displayTime;
 let lapNumber = 1;
 
-startBtn.addEventListener("click", switchStopwatch);
-pauseBtn.addEventListener("click", pause);
-stopBtn.addEventListener("click", stop);
+startPauseBtn.addEventListener("click", startStop);
+splitStopBtn.addEventListener("click", splitStop);
+resetTimeListBtn.addEventListener("click", resetTimeList);
+showTimeListBtn.addEventListener("click", showTimeList);
 
-function switchStopwatch() {
+function showTimeList() {
+  timeList.classList.toggle("hiden");
+}
+
+function startStop() {
   if (status === "switchedOn") {
-    replaceClass(startBtn.firstChild, "fa-play", "fa-arrows-spin");
-    const lap = new Date(currentTime - startLap);
-    let li = document.createElement("li");
+    replaceClass(startPauseBtn.firstChild, "fa-pause", "fa-play");
+    replaceClass(splitStopBtn.firstChild, "fa-arrows-spin", "fa-stop");
+    status = "paused";
 
-    showTime(li, `lap ${lapNumber} - `, lap);
-    lapNumber++;
-    timeList.prepend(li);
-    startLap = new Date();
+    startLapTime = new Date();
   } else if (status === "switchedOff") {
     status = "switchedOn";
-    replaceClass(startBtn.firstChild, "fa-play", "fa-arrows-spin");
+    replaceClass(startPauseBtn.firstChild, "fa-play", "fa-pause");
+    replaceClass(splitStopBtn.firstChild, "fa-stop", "fa-arrows-spin");
     startTime = new Date();
-    startLap = startTime;
+    startLapTime = startTime;
     count();
   } else if (status === "paused") {
     status = "switchedOn";
-    replaceClass(startBtn.firstChild, "fa-play", "fa-arrows-spin");
+    replaceClass(startPauseBtn.firstChild, "fa-play", "fa-pause");
+    replaceClass(splitStopBtn.firstChild, "fa-stop", "fa-arrows-spin");
     startTime = new Date();
+    startLapTime = startTime;
     startTime.setTime(startTime.getTime() - pausedTime.getTime());
     count();
   }
 }
 
-function stop() {
-  status = "switchedOff";
-  replaceClass(startBtn.firstChild, "fa-arrows-spin", "fa-play");
-  stopwatch.textContent = "00:00,00";
-  lapNumber = 1;
-  timeList.replaceChildren();
-}
-function pause() {
-  status = "paused";
-  replaceClass(startBtn.firstChild, "fa-arrows-spin", "fa-play");
+function replaceClass(element, oldClass, newClass) {
+  element.classList.remove(oldClass);
+  element.classList.add(newClass);
 }
 
 function count() {
@@ -68,6 +66,7 @@ function count() {
     }
   });
 }
+
 function showTime(element, description, date) {
   const min = date.getMinutes().toString().padStart(2, 0);
   const sec = date.getSeconds().toString().padStart(2, 0);
@@ -77,7 +76,27 @@ function showTime(element, description, date) {
   element.textContent = `${description}${min}:${sec},${ms}`;
 }
 
-function replaceClass(element, oldClass, newClass) {
-  element.classList.remove(oldClass);
-  element.classList.add(newClass);
+function splitStop() {
+  if (status === "switchedOn") {
+    timeList.classList.remove("hiden");
+    const lap = new Date(currentTime - startLapTime);
+    let li = document.createElement("li");
+
+    showTime(li, `lap ${lapNumber} - `, lap);
+    lapNumber++;
+    timeList.prepend(li);
+    startLapTime = new Date();
+  } else if (status === "paused") {
+    status = "switchedOff";
+    replaceClass(startPauseBtn.firstChild, "fa-arrows-spin", "fa-play");
+    stopwatch.textContent = "00:00,00";
+    lapNumber = 1;
+    timeList.replaceChildren();
+  }
+}
+
+function resetTimeList() {
+  startLapTime = startTime;
+  lapNumber = 1;
+  timeList.replaceChildren();
 }
