@@ -11,7 +11,7 @@
 }
 body {
     display: flex;
-    justify-content: center;
+    justify-content: baseline;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
@@ -26,13 +26,12 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 50px;
-    margin: 350px;
+    margin: 10%;
     width: 800px;
     background-image: radial-gradient(circle, rgb(75, 76, 82) 0%, rgb(25,25,25) 93%);
     border-radius: 8px;
     box-shadow: 5px 5px 10px black;
     color: #cbcbcb;
-
 }
 
 .info {
@@ -65,7 +64,6 @@ h1 {
 
 .time {
     visibility: visible;
-
     font-size: 22px;
     color: var(--second-color);
 }
@@ -88,9 +86,11 @@ button {
     cursor: pointer;
     transition: background-color .3s;
 }
+
 .fa-pause  {
     width: 16.49px;
 }
+
 .fa-arrows-spin{
     width: 16.49px;
 }
@@ -100,12 +100,14 @@ button:hover, button:focus {
     background-color: var(--second-color);
     outline: none;
 }
+
 .time-list li{
     display: flex;
     justify-content: space-between;
     width: 300px;
     font-size: 22px;
 }
+
 .time-list span{
     font-weight: bold;
 }
@@ -115,24 +117,32 @@ button:hover, button:focus {
 }
 
 .modal-shadow{
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0,0,0,.65);
+    visibility: hidden;   
 }
 
 .modal{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 11%;
+    padding: 50px;
+    height: 350px;
     width: 600px;
-    height: 360px;
-    padding: 30px 60px;
-    border-radius: 15px;
-    background-color: rgb(245,245,245);
-}
+    background-image: radial-gradient(circle, rgb(75, 76, 82) 0%, rgb(25,25,25) 93%);
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px black;
+    color: #cbcbcb;
+} 
+
 .modal h3{
     font-size: 30px;
     margin-bottom: 20px;
