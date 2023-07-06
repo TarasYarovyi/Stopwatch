@@ -3,9 +3,12 @@
 const stopwatch = document.querySelector(".stopwatch");
 const startPauseBtn = document.querySelector(".start");
 const splitStopBtn = document.querySelector(".stop");
+const timeList = document.querySelector(".time-list");
 const resetTimeListBtn = document.querySelector(".reset");
 const showTimeListBtn = document.querySelector(".archive");
-const timeList = document.querySelector(".time-list");
+const instruction = document.querySelector(".modal-shadow");
+const instructionBtn = document.querySelector(".info");
+const closeBtn = document.querySelector(".close");
 
 let status = "switchedOff";
 let startTime;
@@ -17,12 +20,10 @@ let lapNumber = 1;
 
 startPauseBtn.addEventListener("click", startStop);
 splitStopBtn.addEventListener("click", splitStop);
-resetTimeListBtn.addEventListener("click", resetTimeList);
 showTimeListBtn.addEventListener("click", showTimeList);
-
-function showTimeList() {
-  timeList.classList.toggle("hiden");
-}
+resetTimeListBtn.addEventListener("click", resetTimeList);
+instructionBtn.addEventListener("click", showInstruction);
+closeBtn.addEventListener("click", closeInstruction);
 
 function startStop() {
   if (status === "switchedOn") {
@@ -95,8 +96,22 @@ function splitStop() {
   }
 }
 
+function showTimeList() {
+  timeList.classList.toggle("hiden");
+}
+
 function resetTimeList() {
   startLapTime = startTime;
   lapNumber = 1;
   timeList.replaceChildren();
+}
+
+function showInstruction() {
+  instruction.style.visibility = "visible";
+  instruction.classList.toggle("modal-animation");
+}
+
+function closeInstruction() {
+  instruction.style.visibility = "hidden";
+  instruction.classList.toggle("modal-animation");
 }
