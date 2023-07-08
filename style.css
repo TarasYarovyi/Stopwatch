@@ -156,7 +156,7 @@ button:hover, button:focus {
 }
 .modal .close {
     display: block;
-    margin: 40px auto 0;
+    margin: 20;
     width: 200px;
     background-color: var(--second-color);
     transition: background-color .3s;
